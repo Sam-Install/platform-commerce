@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import { FiTruck, FiRefreshCw, FiLock, FiHeart, FiCheckCircle, FiShoppingBag } from 'react-icons/fi'
+import { FaStar } from 'react-icons/fa'
 
 const ProductDetails = () => {
   const { id } = useParams()
@@ -193,6 +195,9 @@ const ProductDetails = () => {
           color: var(--accent);
           font-weight: 500;
           margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          gap: 6px;
         }
 
         .pd-title {
@@ -324,6 +329,10 @@ const ProductDetails = () => {
           transition: all 0.3s ease;
           position: relative;
           overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
         }
 
         .pd-add-btn:hover {
@@ -348,11 +357,13 @@ const ProductDetails = () => {
           justify-content: center;
           font-size: 1.1rem;
           transition: all 0.2s;
+          color: var(--brown);
         }
 
         .pd-wish-btn:hover {
           border-color: var(--accent);
           background: rgba(181,129,60,0.08);
+          color: var(--accent);
         }
 
         .pd-meta {
@@ -372,7 +383,14 @@ const ProductDetails = () => {
           border: 1px solid var(--sand);
         }
 
-        .pd-meta-icon { font-size: 1.2rem; margin-bottom: 4px; }
+        .pd-meta-icon {
+          font-size: 1.2rem;
+          margin-bottom: 4px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--brown);
+        }
 
         .pd-meta-label {
           font-size: 0.68rem;
@@ -436,7 +454,10 @@ const ProductDetails = () => {
 
           {/* INFO COLUMN */}
           <div className="pd-info">
-            <div className="pd-cat-label">✦ {product.category}</div>
+            <div className="pd-cat-label">
+              <FaStar size={10} />
+              {product.category}
+            </div>
             <h1 className="pd-title">{product.name}</h1>
 
             <div className="pd-divider" />
@@ -470,25 +491,30 @@ const ProductDetails = () => {
                 className={`pd-add-btn ${added ? 'added' : ''}`}
                 onClick={handleAddToCart}
               >
-                {added ? '✓ Added to Cart' : 'Add to Cart'}
+                {added
+                  ? <><FiCheckCircle size={15} /> Added to Cart</>
+                  : <><FiShoppingBag size={15} /> Add to Cart</>
+                }
               </button>
-              <button className="pd-wish-btn" title="Save">♡</button>
+              <button className="pd-wish-btn" title="Save">
+                <FiHeart size={18} />
+              </button>
             </div>
 
             {/* META */}
             <div className="pd-meta">
               <div className="pd-meta-item">
-                <div className="pd-meta-icon">🚚</div>
+                <div className="pd-meta-icon"><FiTruck size={18} /></div>
                 <span className="pd-meta-label">Delivery</span>
                 <span className="pd-meta-val">2–4 Days</span>
               </div>
               <div className="pd-meta-item">
-                <div className="pd-meta-icon">↩️</div>
+                <div className="pd-meta-icon"><FiRefreshCw size={18} /></div>
                 <span className="pd-meta-label">Returns</span>
                 <span className="pd-meta-val">14 Days</span>
               </div>
               <div className="pd-meta-item">
-                <div className="pd-meta-icon">🔒</div>
+                <div className="pd-meta-icon"><FiLock size={18} /></div>
                 <span className="pd-meta-label">Payment</span>
                 <span className="pd-meta-val">Secure</span>
               </div>

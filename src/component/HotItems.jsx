@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { FiTruck, FiRefreshCw, FiLock, FiArrowRight } from 'react-icons/fi'
 import gl from '../assets/sunglasses.jpg'
 import snk from '../assets/sneakers.jpg'
 import lth from '../assets/leather.jpg'
@@ -357,7 +358,7 @@ const HotItems = () => {
               </p>
             </div>
             <NavLink to="/products" className="hot-header-cta">
-              View All Products →
+              View All Products <FiArrowRight size={13} />
             </NavLink>
           </div>
 
@@ -379,7 +380,7 @@ const HotItems = () => {
                     <p className="hot-card-desc">{item.desc}</p>
                     <div className="hot-card-footer">
                       <span className="hot-card-number">0{index + 1}</span>
-                      <span className="hot-card-arrow">→</span>
+                      <span className="hot-card-arrow"><FiArrowRight size={15} /></span>
                     </div>
                   </div>
                 </div>
@@ -393,9 +394,9 @@ const HotItems = () => {
               Everything you need, <span>curated for you</span>
             </div>
             <div className="hot-strip-pills">
-              <div className="hot-strip-pill">🚚 Free delivery over Ksh 5,000</div>
-              <div className="hot-strip-pill">↩ 14-day returns</div>
-              <div className="hot-strip-pill">🔒 Secure checkout</div>
+              <div className="hot-strip-pill"><FiTruck size={13} /> Free delivery over Ksh 5,000</div>
+              <div className="hot-strip-pill"><FiRefreshCw size={13} /> 14-day returns</div>
+              <div className="hot-strip-pill"><FiLock size={13} /> Secure checkout</div>
             </div>
           </div>
 

@@ -1,5 +1,34 @@
 import React, { useState } from 'react'
 import { useCart } from '../context/CartContext'
+import {
+  FiSmartphone,
+  FiCreditCard,
+  FiDollarSign,
+  FiLock,
+  FiCheck,
+  FiStar
+} from 'react-icons/fi'
+
+const paymentOptions = [
+  {
+    value: "mpesa",
+    icon: <FiSmartphone size={18} />,
+    name: "M-Pesa",
+    desc: "Pay via Safaricom M-Pesa"
+  },
+  {
+    value: "card",
+    icon: <FiCreditCard size={18} />,
+    name: "Debit / Credit Card",
+    desc: "Visa, Mastercard accepted"
+  },
+  {
+    value: "cod",
+    icon: <FiDollarSign size={18} />,
+    name: "Cash on Delivery",
+    desc: "Pay when your order arrives"
+  },
+]
 
 const Checkout = () => {
   const { cart } = useCart()
@@ -31,7 +60,7 @@ const Checkout = () => {
         :root { --cream:#f7f3ed;--warm-white:#faf8f5;--sand:#e8ddd0;--taupe:#c9bdb0;--brown:#8a6f5e;--dark:#2c2018;--accent:#b5813c;--green:#3a6b4a; }
         .success-page { min-height:100vh; background:var(--cream); display:flex; align-items:center; justify-content:center; font-family:'DM Sans',sans-serif; }
         .success-card { background:var(--warm-white); border:1px solid var(--sand); border-radius:24px; padding:60px 48px; text-align:center; max-width:440px; }
-        .success-icon { font-size:3rem; margin-bottom:20px; }
+        .success-icon { display:flex; align-items:center; justify-content:center; margin-bottom:20px; color:var(--accent); }
         .success-card h2 { font-family:'Cormorant Garamond',serif; font-size:2.2rem; color:var(--dark); margin:0 0 10px; }
         .success-card p { font-size:0.85rem; color:var(--brown); line-height:1.7; margin:0 0 28px; }
         .success-card a { display:inline-block; padding:12px 28px; background:var(--dark); color:#fff; border-radius:12px; text-decoration:none; font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; transition:background 0.2s; }
@@ -39,7 +68,9 @@ const Checkout = () => {
       `}</style>
       <div className="success-page">
         <div className="success-card">
-          <div className="success-icon">✦</div>
+          <div className="success-icon">
+            <FiStar size={40} />
+          </div>
           <h2>Order Placed!</h2>
           <p>Thank you, {form.name}. Your order has been received and is being processed. We'll reach you at {form.phone}.</p>
           <a href="/products">Continue Shopping</a>
@@ -98,7 +129,6 @@ const Checkout = () => {
           margin: 0;
         }
 
-        /* STEPS */
         .co-steps {
           display: flex;
           align-items: center;
@@ -146,7 +176,6 @@ const Checkout = () => {
           margin: 0 12px;
         }
 
-        /* LAYOUT */
         .co-container {
           max-width: 1200px;
           margin: 32px auto 0;
@@ -157,7 +186,6 @@ const Checkout = () => {
           align-items: start;
         }
 
-        /* FORM CARD */
         .co-form-card {
           background: var(--warm-white);
           border: 1px solid var(--sand);
@@ -203,7 +231,6 @@ const Checkout = () => {
           margin: 24px 0;
         }
 
-        /* FIELD */
         .co-fields {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -245,7 +272,6 @@ const Checkout = () => {
           box-shadow: 0 0 0 3px rgba(181,129,60,0.1);
         }
 
-        /* PAYMENT OPTIONS */
         .co-payment-opts {
           display: flex;
           flex-direction: column;
@@ -298,9 +324,12 @@ const Checkout = () => {
 
         .co-pay-opt.selected .co-pay-dot { opacity: 1; }
 
-        .co-pay-icon { font-size: 1.3rem; }
-
-        .co-pay-info {}
+        .co-pay-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--brown);
+        }
 
         .co-pay-name {
           font-size: 0.85rem;
@@ -314,7 +343,6 @@ const Checkout = () => {
           margin-top: 1px;
         }
 
-        /* SUBMIT */
         .co-submit {
           width: 100%;
           padding: 15px;
@@ -338,7 +366,6 @@ const Checkout = () => {
           transform: translateY(-1px);
         }
 
-        /* SUMMARY */
         .co-summary {
           background: var(--warm-white);
           border: 1px solid var(--sand);
@@ -418,6 +445,15 @@ const Checkout = () => {
         .co-sum-row.free span:last-child {
           color: var(--green);
           font-weight: 600;
+        }
+
+        .co-free-delivery {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          color: var(--green);
+          font-weight: 600;
+          font-size: 0.82rem;
         }
 
         .co-sum-total {
@@ -536,11 +572,7 @@ const Checkout = () => {
               </div>
 
               <div className="co-payment-opts">
-                {[
-                  { value: "mpesa", icon: "📱", name: "M-Pesa", desc: "Pay via Safaricom M-Pesa" },
-                  { value: "card", icon: "💳", name: "Debit / Credit Card", desc: "Visa, Mastercard accepted" },
-                  { value: "cod", icon: "💵", name: "Cash on Delivery", desc: "Pay when your order arrives" },
-                ].map(opt => (
+                {paymentOptions.map(opt => (
                   <div
                     key={opt.value}
                     className={`co-pay-opt ${form.payment === opt.value ? 'selected' : ''}`}
@@ -586,9 +618,16 @@ const Checkout = () => {
               <span>Subtotal</span>
               <span>Ksh {total.toLocaleString()}</span>
             </div>
-            <div className={`co-sum-row ${delivery === 0 ? 'free' : ''}`}>
+            <div className="co-sum-row">
               <span>Delivery</span>
-              <span>{delivery === 0 ? '✓ Free' : `Ksh ${delivery}`}</span>
+              {delivery === 0
+                ? (
+                  <span className="co-free-delivery">
+                    <FiCheck size={13} /> Free
+                  </span>
+                )
+                : <span>Ksh {delivery}</span>
+              }
             </div>
 
             <div className="co-sum-divider" />
@@ -599,7 +638,8 @@ const Checkout = () => {
             </div>
 
             <div className="co-secure-note">
-              Payments are encrypted & secure
+              <FiLock size={12} />
+              Payments are encrypted &amp; secure
             </div>
           </div>
         </div>

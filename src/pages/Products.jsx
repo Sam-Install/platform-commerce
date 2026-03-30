@@ -1,5 +1,12 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
+import {
+  FiGrid, FiArrowRight
+} from 'react-icons/fi'
+import {
+  GiRunningShoe, GiHanger, GiWatch, GiSmartphone, GiHandBag
+} from 'react-icons/gi'
+import { PiPants } from 'react-icons/pi'
 
 const Products = () => {
   const { category } = useParams()
@@ -22,13 +29,13 @@ const Products = () => {
   const categories = ["all", "shoes", "handbags", "trousers", "shirts", "watches", "phones"]
 
   const categoryIcons = {
-    all: "✦",
-    shoes: "👟",
-    handbags: "👜",
-    trousers: "👖",
-    shirts: "👔",
-    watches: "⌚",
-    phones: "📱",
+    all: <FiGrid size={15} />,
+    shoes: <GiRunningShoe size={15} />,
+    handbags: <GiHandBag size={15} />,
+    trousers: <PiPants size={15} />,
+    shirts: <GiHanger size={15} />,
+    watches: <GiWatch size={15} />,
+    phones: <GiSmartphone size={15} />,
   }
 
   return (
@@ -148,6 +155,8 @@ const Products = () => {
         .cat-btn .icon {
           font-size: 0.9rem;
           opacity: 0.8;
+          display: flex;
+          align-items: center;
         }
 
         .cat-btn .cat-name {
@@ -434,7 +443,7 @@ const Products = () => {
                           View Details
                         </Link>
                         <Link to={`/product/${product.id}`} className="card-arrow">
-                          →
+                          <FiArrowRight size={14} />
                         </Link>
                       </div>
                     </div>

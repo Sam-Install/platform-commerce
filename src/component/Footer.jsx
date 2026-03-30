@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa'
+import { FiMail, FiPhone, FiClock, FiLock, FiTruck, FiRefreshCw, FiFlag } from 'react-icons/fi'
 import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
@@ -383,21 +384,21 @@ const Footer = () => {
               <div>
                 <div className="footer-col-title">Contact</div>
                 <div className="footer-contact-item">
-                  <span className="footer-contact-icon">✉</span>
+                  <span className="footer-contact-icon"><FiMail size={13} /></span>
                   <span className="footer-contact-text">support@pablostore.co.ke</span>
                 </div>
                 <div className="footer-contact-item">
-                  <span className="footer-contact-icon">✆</span>
+                  <span className="footer-contact-icon"><FiPhone size={13} /></span>
                   <span className="footer-contact-text">+254 712 345 678</span>
                 </div>
                 <div className="footer-contact-item">
-                  <span className="footer-contact-icon">◷</span>
+                  <span className="footer-contact-icon"><FiClock size={13} /></span>
                   <span className="footer-contact-text">Mon – Sat · 8am to 6pm</span>
                 </div>
                 <div className="footer-trust">
-                  <div className="footer-trust-item"><span>🔒</span> Secure Checkout</div>
-                  <div className="footer-trust-item"><span>🚚</span> Free Delivery over Ksh 5,000</div>
-                  <div className="footer-trust-item"><span>↩</span> 14-Day Returns</div>
+                  <div className="footer-trust-item"><FiLock size={13} /> Secure Checkout</div>
+                  <div className="footer-trust-item"><FiTruck size={13} /> Free Delivery over Ksh 5,000</div>
+                  <div className="footer-trust-item"><FiRefreshCw size={13} /> 14-Day Returns</div>
                 </div>
               </div>
 
@@ -414,7 +415,7 @@ const Footer = () => {
                 <a href="#">Cookie Policy</a>
               </div>
               <div className="footer-bottom-badge">
-                🇰🇪 Delivering across Kenya
+                <FiFlag size={12} /> Delivering across Kenya
               </div>
             </div>
           </div>

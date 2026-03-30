@@ -2,6 +2,9 @@
 
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { FaHeadphonesSimple } from "react-icons/fa6";
+import { MdAccessTime } from "react-icons/md";
+import { IoMailOutline } from "react-icons/io5";
 
 const Contact = () => {
   const {
@@ -262,9 +265,9 @@ const Contact = () => {
 
         {/* INFO PILLS */}
         <div className="contact-pills">
-          <div className="contact-pill"><span>📧</span><span>support@store.co.ke</span></div>
-          <div className="contact-pill"><span>📞</span><span>+254 700 000 000</span></div>
-          <div className="contact-pill"><span>🕐</span><span>Mon–Sat, 8am–6pm</span></div>
+          <div className="contact-pill"><span><IoMailOutline /></span><span>support@store.co.ke</span></div>
+          <div className="contact-pill"><span><FaHeadphonesSimple /></span><span>+254 700 000 000</span></div>
+          <div className="contact-pill"><span><MdAccessTime /></span><span>Mon–Sat, 8am–6pm</span></div>
         </div>
 
         {/* FORM */}
